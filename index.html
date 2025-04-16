@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask-Learning</title>
+
+    <style>
+        h1
+        {
+            color:white;
+            background-color: black;
+        }
+        body
+        {
+            background-color: aqua;
+        }
+        marquee
+        {
+            font-size:50px;
+            color: red;
+        }
+        .ltr
+        {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <center><img src="{{url_for('static',filename='Avinash_Photo.jpg')}}" alt="not found"></center>
+    <marquee direction = "right" scrollamount="15"><label class="ltr">Avinash Pandharinath Raut</label></marquee>
+    <center><h1><label>I am Learning Flask from avinash raut</label></h1></center>
+
+    {% for i in mylist %}
+        <center><li>{{i}}</li></center>
+    {% endfor %}
+</body>
+</html>

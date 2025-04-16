@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data</title>
+    <style>
+        th,td {
+            border: 2px solid black;
+            padding: 3px;
+            text-align: center;
+        }
+        table {
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+   <form action="/show_data" method="post">
+    <center><h1>Personal Information Without Database</h1></center>
+
+    <center>
+    <table>
+        <tr>
+	    <th>Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Address</th>
+        </tr>
+        <tr>
+            <td>{{name}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td>{{address}}</td>
+        </tr>
+    </table>
+    </center>
+
+    <hr>
+    <center><h1>Education Information Without Database</h1></center>
+    <hr>
+
+    <center>
+    <table>
+        <tr>
+            <th>Highest Qualification</th>
+            <th>University/Board</th>
+            <th>Passing Year</th>
+            <th>Percentage/CGPA</th>
+        </tr>
+        <tr>
+            <td>{{qualification}}</td>
+            <td>{{board}}</td>
+            <td>{{p_year}}</td>
+            <td>{{percentage}}</td>
+        </tr>
+    </table>
+    </center>
+
+    <center>
+        <button type="submit" class="btn btn-primary">Next</button>
+    </center>
+   </form>
+</body>
+</html>
+

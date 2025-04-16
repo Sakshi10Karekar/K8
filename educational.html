@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Educational Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Educational Information</h2>
+        <form action="/submited_data" method="post">
+            <div class="mb-3">
+                <label class="form-label">Highest Qualification</label>
+                <input type="text" class="form-control" name="qualification" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">University / Board</label>
+                <input type="text" class="form-control" name="board" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Passing Year</label>
+                <input type="number" class="form-control" name="year" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Percentage / CGPA</label>
+                <input type="text" class="form-control" name="score" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" name="address" required>
+            </div>
+
+            <!-- Hidden fields from the previous form -->
+            <input type="hidden" name="name" value="{{name}}">
+            <input type="hidden" name="email" value="{{email}}">
+            <input type="hidden" name="phone" value="{{phone}}">
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
