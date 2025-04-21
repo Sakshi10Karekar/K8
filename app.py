@@ -1,3 +1,56 @@
+import os
+from flask import Flask, request, jsonify
+import psycopg2
+from psycopg2.extras import RealDictCursor
+
+app = Flask(__name__)
+
+def get_db_connection():
+    return psycopg2.connect(
+        host=os.getenv('DB_HOST', 'localhost'),
+        port=os.getenv('DB_PORT', 5432),
+        database=os.getenv('DB_NAME', 'postgres'),
+        user=os.getenv('DB_USER', 'postgres'),
+        password=os.getenv('DB_PASS', 'postgres')
+    )
+
+# Create User
+@app.route('/submit_data', methods=['POST'])
+def submit_data():
+    if not request.is_json:
+        return jsonify({'error': 'Content-Type must be application/json'}), 400
+
+    data = request.get_json(silent=True)
+    if not data:
+        return jsonify({'error': 'Invalid or missing JSON'}), 400
+
+    name = data.get('name')
+    address = data.get('address')
+    if not name or not address:
+        return jsonify({'error': 'Missing name or address'}), 400
+
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        cur.execute(
+            "INSERT INTO users (name, address) VALUES (%s, %s)",
+            (name, address)
+        )
+        conn.commit()
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    finally:
+        cur.close()
+        conn.close()
+
+    return jsonify({'message': 'User created successfully'}), 201
+
+# Get All Users
+@app.route('/show_data', methods=['GET'])
+def show_data():
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor(cursor_factory=RealDictCursor)
         cur.execute("SELECT id, name, address FROM users")
         users = cur.fetchall()
     except Exception as e:
@@ -7,7 +60,6 @@
         conn.close()
 
     return jsonify(users), 200
-
 # Update User Address
 @app.route('/update/<int:user_id>', methods=['PUT'])
 def update_user(user_id):
